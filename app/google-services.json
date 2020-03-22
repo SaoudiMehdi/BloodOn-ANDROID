@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "410437210088",
+    "firebase_url": "https://bloodon-e8e18.firebaseio.com",
+    "project_id": "bloodon-e8e18",
+    "storage_bucket": "bloodon-e8e18.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:410437210088:android:0b9c4af3f3cc99e82b9e5d",
+        "android_client_info": {
+          "package_name": "com.example.bloodon"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "410437210088-jm966024tveet0ivbp6jrtb5o5g25drv.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.bloodon",
+            "certificate_hash": "9433d86b2e80192332e1caf73a45ee50527aa0eb"
+          }
+        },
+        {
+          "client_id": "410437210088-1snb28g0jgh8l03bbovunbbbpqlnl22t.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBkWgGKeJpUz_9XnsdfoleiJlnn39D-MGw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "410437210088-1snb28g0jgh8l03bbovunbbbpqlnl22t.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
