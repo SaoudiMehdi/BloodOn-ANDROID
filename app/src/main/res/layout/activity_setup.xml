@@ -24,11 +24,15 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-condensed-light"
                 android:gravity="center"
                 android:paddingTop="50dp"
                 android:text="Completer votre profil"
+                android:textAllCaps="false"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
                 android:textSize="36sp"
-                android:textStyle="bold|italic" />
+                android:textStyle="bold"
+                android:typeface="serif" />
 
         </LinearLayout>
 
@@ -165,7 +169,7 @@
                     android:layout_weight="1"
                     android:background="@drawable/bt_uisquare"
                     android:gravity="center"
-                    android:text="Submit"
+                    android:text="Enregister"
                     android:textColor="@android:color/white" />
 
             </LinearLayout>
