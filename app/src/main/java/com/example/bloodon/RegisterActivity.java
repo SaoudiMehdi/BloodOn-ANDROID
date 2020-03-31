@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -59,8 +60,8 @@ public class RegisterActivity extends AppCompatActivity {
 
     private void CreateNewAccount() {
 
-        String email= UserEmail.getText().toString();
-        String password=UserPassword.getText().toString();
+        final String email= UserEmail.getText().toString();
+        final String password=UserPassword.getText().toString();
         String confrmpassword = UserConfrmPassword.getText().toString();
 
         if (TextUtils.isEmpty(email)){
@@ -82,7 +83,7 @@ public class RegisterActivity extends AppCompatActivity {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if(task.isSuccessful()){
-                                SendUserToSetupActivity();
+                                SendUserToSetupActivity(email,password);
 
                                 Toast.makeText(RegisterActivity.this, "you are authenticated succefuly....", Toast.LENGTH_SHORT).show();
                             }
@@ -97,9 +98,12 @@ public class RegisterActivity extends AppCompatActivity {
 
     }
 
-    private void SendUserToSetupActivity() {
+    private void SendUserToSetupActivity(String email, String password) {
         Intent setupIntent = new Intent(RegisterActivity.this,SetupActivity.class);
         setupIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        Log.w("email email am:",email);
+        setupIntent.putExtra("email",email);
+        setupIntent.putExtra("password", password);
         startActivity(setupIntent);
         finish();
     }
