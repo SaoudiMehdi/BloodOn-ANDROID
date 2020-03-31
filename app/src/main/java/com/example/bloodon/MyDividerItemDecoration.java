@@ -1,11 +1,9 @@
-package com.example.tp2;
+package com.example.bloodon;
 
 import android.content.Context;
 import android.content.res.Resources;
 import android.content.res.TypedArray;
 import android.graphics.Canvas;
-import android.graphics.Color;
-import android.graphics.PorterDuff;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import androidx.recyclerview.widget.LinearLayoutManager;
