@@ -39,9 +39,9 @@ public class RegisterActivity extends AppCompatActivity {
 
         mAuth = FirebaseAuth.getInstance();
 
-        UserEmail=findViewById(R.id.register_email);
-        UserPassword=findViewById(R.id.register_password);
-        UserConfrmPassword=findViewById(R.id.register_confrm_password);
+        UserEmail = findViewById(R.id.register_email);
+        UserPassword = findViewById(R.id.register_password);
+        UserConfrmPassword = findViewById(R.id.register_confrm_password);
         CreateAccountButton = findViewById(R.id.register_create_account);
 
         CreateAccountButton.setOnClickListener(new View.OnClickListener() {
@@ -55,41 +55,40 @@ public class RegisterActivity extends AppCompatActivity {
         Window window = this.getWindow();
         window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-        window.setStatusBarColor(ContextCompat.getColor(this,R.color.colorBl));
+        window.setStatusBarColor(ContextCompat.getColor(this, R.color.orangeLight));
     }
 
     private void CreateNewAccount() {
 
-        final String email= UserEmail.getText().toString();
-        final String password=UserPassword.getText().toString();
-        String confrmpassword = UserConfrmPassword.getText().toString();
+        final String email = UserEmail.getText().toString();
+        final String password = UserPassword.getText().toString();
+        final String confrmpassword = UserConfrmPassword.getText().toString();
 
         if (TextUtils.isEmpty(email)){
-            Toast.makeText(this, "please write your email..", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "please write your email..", Toast.LENGTH_LONG).show();
         }
         else  if (TextUtils.isEmpty(password)){
-            Toast.makeText(this, "please write your password..", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "please write your password..", Toast.LENGTH_LONG).show();
         }
         else  if (TextUtils.isEmpty(confrmpassword)){
-            Toast.makeText(this, "please confrm your password..", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "please confrm your password..", Toast.LENGTH_LONG).show();
         }
         else if (!password.equals(confrmpassword)){
-            Toast.makeText(this, "Your Password do not match", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Your Password do not match", Toast.LENGTH_LONG).show();
         }
         else{
 
-            mAuth.createUserWithEmailAndPassword(email,password)
+            mAuth.createUserWithEmailAndPassword(email, password)
                     .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if(task.isSuccessful()){
-                                SendUserToSetupActivity(email,password);
-
-                                Toast.makeText(RegisterActivity.this, "you are authenticated succefuly....", Toast.LENGTH_SHORT).show();
+                                SendUserToSetupActivity(email, password);
+                                Toast.makeText(RegisterActivity.this, "you are authenticated succefuly....", Toast.LENGTH_LONG).show();
                             }
                             else{
                                 String message= task.getException().getMessage();
-                                Toast.makeText(RegisterActivity.this, "Error Occured" + message, Toast.LENGTH_SHORT).show();
+                                Toast.makeText(RegisterActivity.this, "Error Occured" + message, Toast.LENGTH_LONG).show();
                             }
                         }
                     });
@@ -102,8 +101,9 @@ public class RegisterActivity extends AppCompatActivity {
         Intent setupIntent = new Intent(RegisterActivity.this,SetupActivity.class);
         setupIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         Log.w("email email am:",email);
-        setupIntent.putExtra("email",email);
+        setupIntent.putExtra("email", email);
         setupIntent.putExtra("password", password);
+        setupIntent.putExtra("activitySource", "Activity Register");
         startActivity(setupIntent);
         finish();
     }
