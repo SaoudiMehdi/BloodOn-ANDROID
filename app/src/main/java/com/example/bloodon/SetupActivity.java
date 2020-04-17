@@ -13,13 +13,17 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -27,6 +31,7 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -40,6 +45,7 @@ import com.squareup.picasso.Picasso;
 import com.theartofdev.edmodo.cropper.CropImage;
 import com.theartofdev.edmodo.cropper.CropImageView;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -48,18 +54,22 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class SetupActivity extends AppCompatActivity {
 
 
-    private EditText fullname,Prenom,Telephone,CIN,Adresse,Ville,Categorie_sang;
+    private EditText fullname, Telephone, CIN, Adresse, Ville, Categorie_sang, emailEditText;
 
     private CircleImageView ProfileImage;
     private Button SaveInfomartionbutton;
-
+    private Spinner bloodSpinner;
     private FirebaseAuth mAuth;
     private DatabaseReference UserRef;
     private StorageReference UserProfileImageRef;
 
+    private DatabaseReference profileUserRef;
+
+    private String currentUserId;
+
     private ProgressDialog loadingBar;
 
-    private String email, password;
+    private String email, password, activitySource;
 
     String currentUsersID;
     final  static  int GalleryPick=1;
@@ -70,19 +80,11 @@ public class SetupActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_setup);
 
-        Bundle extras = getIntent().getExtras();
-        if(extras == null) {
-            email= null;
-            password = null;
-        } else {
-            email= extras.getString("email").toString();
-            password= extras.getString("password").toString();
-        }
 
         Window window = this.getWindow();
         window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-        window.setStatusBarColor(ContextCompat.getColor(this,R.color.colorBl));
+        window.setStatusBarColor(ContextCompat.getColor(this,R.color.orangeLight));
 
         loadingBar= new ProgressDialog(this);
 
@@ -95,14 +97,91 @@ public class SetupActivity extends AppCompatActivity {
         UserProfileImageRef = FirebaseStorage.getInstance().getReference().child("profile Image");
 
         fullname = findViewById(R.id.setup_full_name);
-        //Prenom = findViewById(R.id.prenom);
         Telephone = findViewById(R.id.setup_telephone);
         Adresse = findViewById(R.id.setup_adresse);
         Ville = findViewById(R.id.setup_ville);
         CIN = findViewById(R.id.setup_cin);
-        Categorie_sang = findViewById(R.id.setup_categorie_sang);
         ProfileImage =findViewById(R.id.setup_profile_image);
+        emailEditText = findViewById(R.id.setup_email);
+        bloodSpinner = findViewById(R.id.setup_sang);
 
+        ArrayList<String> bloodType = new ArrayList<String>();
+        bloodType.add("Catégorie sang");
+        bloodType.add("A-"); bloodType.add("A+"); bloodType.add("B-"); bloodType.add("B+"); bloodType.add("O-"); bloodType.add("O+");
+        bloodType.add("AB-"); bloodType.add("AB+");
+
+        final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, bloodType);
+        arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        bloodSpinner.setAdapter(arrayAdapter);
+
+        activitySource = "";
+
+        Bundle extras = getIntent().getExtras();
+        if(extras == null) {
+            email = null;
+            password = null;
+        } else {
+            activitySource = extras.getString("activitySource");
+            if(activitySource.compareToIgnoreCase("Activity Register") == 0) {
+                email = extras.getString("email");
+                password = extras.getString("password");
+                emailEditText.setEnabled(false);
+            }
+            else if(activitySource.compareToIgnoreCase("Activity Profile") == 0) {
+                mAuth = FirebaseAuth.getInstance();
+                currentUserId =mAuth.getCurrentUser().getUid();
+                profileUserRef = FirebaseDatabase.getInstance().getReference().child("Users").child(currentUserId);
+
+                FirebaseUser user = mAuth.getCurrentUser();
+                if(user != null) {
+                    emailEditText.setText(user.getEmail());
+                }
+
+                profileUserRef.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot)
+                    {
+                        if(dataSnapshot.exists())
+                        {
+                            String myProfileImage = dataSnapshot.child("profileimage").getValue().toString();
+                            String myProfileName = dataSnapshot.child("fullname").getValue().toString();
+                            String myProfileTelephone = dataSnapshot.child("telephone").getValue().toString();
+                            String myProfileAdresse = dataSnapshot.child("adresse").getValue().toString();
+                            String cin = dataSnapshot.child("cin").getValue().toString();
+                            String ville = dataSnapshot.child("ville").getValue().toString();
+                            String categorieSang = dataSnapshot.child("categorie du sang").getValue().toString();
+
+                            Picasso.get().load(myProfileImage).placeholder(R.drawable.profile).into(ProfileImage);
+
+                            fullname.setText(myProfileName);
+                            Telephone.setText(myProfileTelephone);
+                            CIN.setText(cin);
+                            Ville.setText(ville);
+                            if(categorieSang != null) {
+                                int spinnerPosition = arrayAdapter.getPosition(categorieSang);
+                                bloodSpinner.setSelection(spinnerPosition);
+                            }
+                            Adresse.setText(myProfileAdresse);
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });
+
+                emailEditText.setEnabled(true);
+
+            }
+        }
+
+
+
+        if(activitySource.compareToIgnoreCase("Activity Register") == 0) {
+            emailEditText.setText(email);
+        }
+        
         SaveInfomartionbutton = findViewById(R.id.setup_information_button);
 
         SaveInfomartionbutton.setOnClickListener(new View.OnClickListener() {
@@ -111,6 +190,8 @@ public class SetupActivity extends AppCompatActivity {
                 SaveAccountSetupInformation();
             }
         });
+
+
         ProfileImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -133,7 +214,7 @@ public class SetupActivity extends AppCompatActivity {
                                 .into(ProfileImage);
                     }
                     else{
-                        Toast.makeText(SetupActivity.this, "Please select profile image first..", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(SetupActivity.this, "Please select profile image first..", Toast.LENGTH_LONG).show();
                     }
 
 
@@ -149,11 +230,12 @@ public class SetupActivity extends AppCompatActivity {
 
     }
 
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
 
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode==GalleryPick && resultCode==RESULT_OK && data!=null){
+        if (requestCode == GalleryPick && resultCode == RESULT_OK && data != null){
             Uri ImageUri = data.getData();
             CropImage.activity()
                     .setGuidelines(CropImageView.Guidelines.ON)
@@ -170,118 +252,96 @@ public class SetupActivity extends AppCompatActivity {
                 loadingBar.setCanceledOnTouchOutside(true);
                 loadingBar.show();
 
-
                 Uri resultUri=result.getUri();
                 StorageReference filePath = UserProfileImageRef.child(currentUsersID + ".jpg");
                 StorageTask<UploadTask.TaskSnapshot> taskSnapshotStorageTask = filePath.putFile(resultUri).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
                         if (task.isSuccessful()) {
-                            Toast.makeText(SetupActivity.this, "profile Image stored succesfully to firebase storage", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(SetupActivity.this, "profile Image stored succesfully to firebase storage", Toast.LENGTH_LONG).show();
                             StorageReference filePath = UserProfileImageRef.child(currentUsersID + ".jpg");
                             filePath.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                                 @Override
                                 public void onSuccess(Uri uri) {
                                     String downloadUrl=uri.toString();
-                                    //  Toast.makeText(SetupActivity.this, downloadUrl, Toast.LENGTH_SHORT).show();
+                                    //  Toast.makeText(SetupActivity.this, downloadUrl, Toast.LENGTH_LONG).show();
                                     UserRef.child("profileimage").setValue(downloadUrl)
                                             .addOnCompleteListener(new OnCompleteListener<Void>() {
                                                 @Override
                                                 public void onComplete(@NonNull Task<Void> task) {
                                                     if (task.isSuccessful()){
 
-                                                        Intent selfIntent = new Intent(SetupActivity.this,SetupActivity.class);
-                                                        startActivity(selfIntent);
-                                                        Toast.makeText(SetupActivity.this, "profile image stored to Firebase succesfully", Toast.LENGTH_SHORT).show();
-                                                        loadingBar.dismiss();
+                                                        /*Intent selfIntent = new Intent(SetupActivity.this,SetupActivity.class);
+                                                        startActivity(selfIntent);*/
+                                                        Toast.makeText(SetupActivity.this, "profile image stored to Firebase succesfully", Toast.LENGTH_LONG).show();
+
                                                     }
                                                     else {
                                                         String message =task.getException().getMessage();
-                                                        Toast.makeText(SetupActivity.this, "Error Ocurred" + message, Toast.LENGTH_SHORT).show();
+                                                        Toast.makeText(SetupActivity.this, "Error Ocurred" + message, Toast.LENGTH_LONG).show();
                                                         loadingBar.dismiss();
                                                     }
                                                 }
                                             });
                                 }
                             });
-
-
-
                         }
                     }
                 });
 
             }
             else {
-                Toast.makeText(this, "Error ocurred Image can't be cropped try again", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Error ocurred Image can't be cropped try again", Toast.LENGTH_LONG).show();
                 loadingBar.dismiss();
             }
         }
     }
 
     private void SaveAccountSetupInformation() {
-        String nom= fullname.getText().toString();
-        //String prenom= Prenom.getText().toString();
-        String telephone= Telephone.getText().toString();
+        String nom = fullname.getText().toString();
+        String telephone = Telephone.getText().toString();
         String cin = CIN.getText().toString();
         String ville = Ville.getText().toString();
-        String categorie_sang = Categorie_sang.getText().toString();
         String adresse = Adresse.getText().toString();
+        String _email = emailEditText.getText().toString();
+        String blood = bloodSpinner.getSelectedItem().toString();
 
 
         if (TextUtils.isEmpty(nom)){
-            Toast.makeText(this, "Please write your username", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Please write your username", Toast.LENGTH_LONG).show();
         }
-        /*if (TextUtils.isEmpty(prenom)){
-            Toast.makeText(this, "Please write your fullname", Toast.LENGTH_SHORT).show();
-        }*/
-        if (TextUtils.isEmpty(telephone)){
-            Toast.makeText(this, "Please write your phone number", Toast.LENGTH_SHORT).show();
+        else if (TextUtils.isEmpty(telephone)){
+            Toast.makeText(this, "Please write your phone number", Toast.LENGTH_LONG).show();
         }
-        if (TextUtils.isEmpty(cin)){
-            Toast.makeText(this, "Please write your cin", Toast.LENGTH_SHORT).show();
+        else if (TextUtils.isEmpty(cin)){
+            Toast.makeText(this, "Please write your cin", Toast.LENGTH_LONG).show();
         }
-        if (TextUtils.isEmpty(ville)){
-            Toast.makeText(this, "Please write your ville", Toast.LENGTH_SHORT).show();
+        else if (TextUtils.isEmpty(ville)){
+            Toast.makeText(this, "Please write your ville", Toast.LENGTH_LONG).show();
         }
-        if (TextUtils.isEmpty(adresse)){
-            Toast.makeText(this, "Please write your adresse", Toast.LENGTH_SHORT).show();
+        else if (TextUtils.isEmpty(adresse)){
+            Toast.makeText(this, "Please write your adresse", Toast.LENGTH_LONG).show();
         }
-        if (TextUtils.isEmpty(categorie_sang)){
-            Toast.makeText(this, "Please write your categorie du sang", Toast.LENGTH_SHORT).show();
+        else if(blood.compareTo("Catégorie sang") == 0){
+            Toast.makeText(this, "Please choose your blood type", Toast.LENGTH_LONG).show();
         }
+        else if(TextUtils.isEmpty(_email)){
+            Toast.makeText(this, "Please write your  email", Toast.LENGTH_LONG).show();
+        }
+
         else {
-            loadingBar.setTitle("Saving Information");
+            /*loadingBar.setTitle("Saving Information");
             loadingBar.setMessage("Please wait,While we are creating your new account...");
             loadingBar.show();
-            loadingBar.setCanceledOnTouchOutside(true);
+            loadingBar.setCanceledOnTouchOutside(true);*/
 
-            HashMap userMap=new HashMap();
-            /*userMap.put("email",email);
-            userMap.put("password",password);
-            userMap.put("fullname",nom);
-            //userMap.put("prenom",prenom);
-            userMap.put("telephone",telephone);
-            userMap.put("ville",ville);
-            userMap.put("adresse",adresse);
-            userMap.put("cin",cin);
-            userMap.put("point",0);
-            userMap.put("categorie du sang",categorie_sang);
-
-            userMap.put("status","hey there, i am using Poster social Network");
-            userMap.put("gender","none");
-            userMap.put("dob","none");
-            userMap.put("relationshipstatus","none");*/
-            //Log.w("emaaaaaaaaaaaaail: ",email);
             AddChild("fullname",nom);
-            AddChild("email",email);
-            AddChild("password",password);
             AddChild("telephone",telephone);
             AddChild("ville",ville);
             AddChild("adresse",adresse);
             AddChild("cin",cin);
             AddChild("point",0);
-            UserRef.child("categorie du sang").setValue(categorie_sang).addOnCompleteListener(new OnCompleteListener() {
+            UserRef.child("categorie du sang").setValue(blood).addOnCompleteListener(new OnCompleteListener() {
                 @Override
                 public void onComplete(@NonNull Task task) {
                     if(task.isSuccessful()){
@@ -291,7 +351,7 @@ public class SetupActivity extends AppCompatActivity {
                     }
                     else {
                         String message= task.getException().getMessage();
-                        Toast.makeText(SetupActivity.this, "Error occured"+ message, Toast.LENGTH_SHORT).show();
+                        Toast.makeText(SetupActivity.this, "Error occured"+ message, Toast.LENGTH_LONG).show();
                         loadingBar.dismiss();
                     }
                 }
@@ -309,7 +369,7 @@ public class SetupActivity extends AppCompatActivity {
                 }
                 else {
                     String message= task.getException().getMessage();
-                    Toast.makeText(SetupActivity.this, "Error occured"+ message, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(SetupActivity.this, "Error occured"+ message, Toast.LENGTH_LONG).show();
                     loadingBar.dismiss();
                 }
             }
@@ -322,7 +382,6 @@ public class SetupActivity extends AppCompatActivity {
         startActivity(mainIntent);
         finish();
     }
-
 
 
 }
