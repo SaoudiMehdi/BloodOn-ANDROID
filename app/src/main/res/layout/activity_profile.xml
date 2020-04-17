@@ -1,11 +1,259 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true">
+
+    <!-- Weight 1 -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="245sp"
+            android:layout_weight="0.75"
+            android:background="@drawable/header4_2"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/profileName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="5dp"
+                    android:text="YOUNESS Mouad"
+                    android:textColor="#fff"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+                <ImageButton
+                    android:id="@+id/profileEdit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="15dp"
+                    android:background="@drawable/ic_edit_black_24dp" />
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/profileCIN"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginBottom="15dp"
+                android:text="JY00000"
+                android:textColor="#fff"
+                android:textSize="17sp" />
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/profileImage"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:layout_marginTop="0dp"
+                app:civ_border_color="@color/orangeLight"
+                app:civ_border_width="2dp"
+                android:src="@drawable/ic_launcher_background" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:layout_gravity="center">
+
+            <TextView
+                android:id="@+id/bonusValue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="000 Points"
+                android:textColor="@color/orange"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+    </LinearLayout>
+    <!-- Weight 1 -->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="300dp">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_margin="16dp"
+            android:layout_weight="0.9"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="8dp">
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/profileEmail"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:clickable="false"
+                    android:drawableStart="@drawable/ic_email_24dp"
+                    android:drawableLeft="@drawable/ic_email_24dp"
+                    android:drawablePadding="10dp"
+                    android:hint="Email"
+                    android:enabled="false"
+                    android:inputType="textEmailAddress"
+                    android:paddingBottom="16dp" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+                android:layout_marginTop="8dp">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/profilePhone"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:clickable="false"
+                    android:drawableStart="@drawable/ic_local_phone_24dp"
+                    android:drawableLeft="@drawable/ic_local_phone_24dp"
+                    android:drawablePadding="10dp"
+                    android:enabled="false"
+                    android:hint="Téléphone"
+                    android:inputType="phone"
+                    android:paddingBottom="16dp" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/profileSang"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:clickable="false"
+                    android:drawableStart="@drawable/ic_blood_icon"
+                    android:drawableLeft="@drawable/ic_blood_icon"
+                    android:drawablePadding="10dp"
+                    android:enabled="false"
+                    android:hint="Catégorie de sang"
+                    android:paddingBottom="16dp" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/profileVille"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:clickable="false"
+                    android:drawableStart="@drawable/ic_location_city_24dp"
+                    android:drawableLeft="@drawable/ic_location_city_24dp"
+                    android:drawablePadding="10dp"
+                    android:enabled="false"
+                    android:hint="Ville"
+                    android:paddingBottom="16dp" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/profileAdresse"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:clickable="false"
+                    android:drawableStart="@drawable/ic_location_on_24dp"
+                    android:drawableLeft="@drawable/ic_location_on_24dp"
+                    android:drawablePadding="10dp"
+                    android:text="Agadir lehna TATA"
+                    android:enabled="false"
+                    android:hint="Adresse"
+                    android:paddingBottom="16dp" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <!--<com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="25dp"
+                app:passwordToggleEnabled="true">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/profilePassword"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawableStart="@drawable/ic_lock_outline_24dp"
+                    android:drawableLeft="@drawable/ic_lock_outline_24dp"
+                    android:drawablePadding="10dp"
+                    android:enabled="false"
+                    android:text="123456789"
+                    android:hint="Mot de passe"
+                    android:inputType="textPassword"
+                    android:paddingBottom="16dp" />
+
+            </com.google.android.material.textfield.TextInputLayout>-->
+
+            <!--<LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:layout_marginTop="15dp"
+                android:weightSum="2">
+
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="8dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/bt_uisquare"
+                    android:text="s'inscrire"
+                    android:id="@+id/register_create_account"
+                    android:textColor="@android:color/white" />
+
+
+            </LinearLayout>-->
+
+        </LinearLayout>
+    </ScrollView>
+
+</RelativeLayout>
+<!--<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
-    tools:context=".ProfileActivity">
+    android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -33,7 +281,7 @@
                 android:layout_marginLeft="14dp"
                 android:layout_toRightOf="@id/profileImage"
                 android:text="YOUNESS Mouad"
-                android:textColor="#fff"
+                android:textColor="#000"
                 android:textSize="20sp"
                 android:textStyle="bold" />
 
@@ -47,7 +295,7 @@
                 android:layout_marginTop="3dp"
                 android:layout_toRightOf="@id/profileImage"
                 android:text="JY00000"
-                android:textColor="#fff"
+                android:textColor="#000"
                 android:textSize="17sp" />
         </RelativeLayout>
 
@@ -77,16 +325,6 @@
                         android:layout_centerHorizontal="true"
                         android:layout_marginTop="8dp"
                         android:src="@drawable/ic_bonus_black_24dp" />
-
-                    <!--<TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Bonus"
-                        android:textStyle="bold"
-                        android:textSize="20sp"
-                        android:layout_centerHorizontal="true"
-                        android:textColor="#000"
-                        android:layout_below="@id/bonusImage"/>-->
 
                     <LinearLayout
                         android:layout_width="wrap_content"
@@ -140,7 +378,7 @@
                     android:id="@+id/profileEmail"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:drawableLeft="@drawable/ic_mail_outline_black_24dp"
+                    android:drawableLeft="@drawable/ic_mail_outline_24dp"
                     android:drawablePadding="8dp"
                     android:textColor="#000" />
 
@@ -203,3 +441,4 @@
     </LinearLayout>
 
 </ScrollView>
+-->
