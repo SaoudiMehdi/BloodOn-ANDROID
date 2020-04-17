@@ -1,46 +1,50 @@
 {
   "project_info": {
-    "project_number": "410437210088",
-    "firebase_url": "https://bloodon-e8e18.firebaseio.com",
-    "project_id": "bloodon-e8e18",
-    "storage_bucket": "bloodon-e8e18.appspot.com"
+    "project_number": "620751518383",
+    "firebase_url": "https://mybloodon2.firebaseio.com",
+    "project_id": "mybloodon2",
+    "storage_bucket": "mybloodon2.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:410437210088:android:0b9c4af3f3cc99e82b9e5d",
+        "mobilesdk_app_id": "1:620751518383:android:cd330d0802ebc75340725a",
         "android_client_info": {
-          "package_name": "com.example.bloodon"
+          "package_name": "com.example.mybloodon"
         }
       },
       "oauth_client": [
         {
-          "client_id": "410437210088-jm966024tveet0ivbp6jrtb5o5g25drv.apps.googleusercontent.com",
+          "client_id": "620751518383-7ubmgsrjdm1f2oudpgct4fi7rdh6amcg.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.example.bloodon",
-            "certificate_hash": "9433d86b2e80192332e1caf73a45ee50527aa0eb"
+            "package_name": "com.example.mybloodon",
+            "certificate_hash": "dfd35b0e9834fcb5b345ca28350b2b24821a8d77"
           }
         },
         {
-          "client_id": "410437210088-1snb28g0jgh8l03bbovunbbbpqlnl22t.apps.googleusercontent.com",
+          "client_id": "620751518383-72th9480ul6vh381csqu8nbqmm2f60dq.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBkWgGKeJpUz_9XnsdfoleiJlnn39D-MGw"
+          "current_key": "AIzaSyDegQNJGYslY0I6TyeqtRioIcmtB1CdLeQ"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "410437210088-1snb28g0jgh8l03bbovunbbbpqlnl22t.apps.googleusercontent.com",
+              "client_id": "620751518383-72th9480ul6vh381csqu8nbqmm2f60dq.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
         }
+      },
+      "rules": {
+        ".read": true,
+        ".write": true
       }
     }
   ],
