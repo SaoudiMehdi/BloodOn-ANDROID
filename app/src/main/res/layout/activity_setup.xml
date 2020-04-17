@@ -6,133 +6,234 @@ android:layout_width="match_parent"
 android:layout_height="match_parent"
 tools:context=".SetupActivity">
 
+    <LinearLayout
+        android:id="@+id/profileLayout"
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:layout_weight="0.75"
+        android:background="@drawable/header2_2"
+        android:gravity="center"
+        android:orientation="vertical">
 
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/setup_profile_image"
+            android:layout_width="185dp"
+            android:layout_height="164dp"
+            android:layout_centerHorizontal="true"
+            app:civ_border_color="@color/orangeLight"
+            app:civ_border_width="2dp"
+            android:src="@drawable/profile" />
 
+    </LinearLayout>
 
-<de.hdodenhof.circleimageview.CircleImageView
-    android:id="@+id/setup_profile_image"
-    android:layout_width="185dp"
-    android:layout_height="164dp"
-    android:layout_alignParentTop="true"
-    android:layout_centerHorizontal="true"
-    android:layout_marginTop="25dp"
-    android:src="@drawable/profile" />
-
-<!--<EditText
-    android:layout_below="@+id/setup_profile_image"
-    android:id="@+id/setup_username"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-
-    android:layout_centerHorizontal="true"
-    android:layout_marginLeft="20dp"
-    android:layout_marginTop="30dp"
-    android:layout_marginRight="20dp"
-    android:background="@drawable/bt_uiborderrr"
-    android:drawableLeft="@drawable/username"
-    android:ems="10"
-    android:hint="Username"
-    android:inputType="textMultiLine"
-    android:padding="14dp" />-->
-
-<EditText
-    android:id="@+id/setup_full_name"
-    android:layout_below="@+id/setup_profile_image"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_centerVertical="true"
-    android:layout_marginLeft="20dp"
-    android:layout_marginTop="15dp"
-    android:layout_marginRight="20dp"
-    android:background="@drawable/bt_uiborderrr"
-    android:drawableLeft="@drawable/name"
-    android:ems="10"
-    android:hint="full name"
-    android:inputType="textMultiLine"
-    android:padding="14dp" />
-
-<EditText
-    android:id="@+id/setup_cin"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_below="@+id/setup_full_name"
-    android:layout_marginLeft="20dp"
-    android:layout_marginTop="20dp"
-    android:layout_marginRight="20dp"
-    android:background="@drawable/bt_uiborderrr"
-    android:drawableLeft="@drawable/country"
-    android:ems="10"
-    android:hint="CIN"
-    android:inputType="textMultiLine"
-    android:padding="14dp" />
-<EditText
-    android:id="@+id/setup_telephone"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_below="@+id/setup_cin"
-    android:layout_marginLeft="20dp"
-    android:layout_marginTop="20dp"
-    android:layout_marginRight="20dp"
-    android:background="@drawable/bt_uiborderrr"
-    android:drawableLeft="@drawable/country"
-    android:ems="10"
-    android:hint="Telephone"
-    android:inputType="textMultiLine"
-    android:padding="14dp" />
-<EditText
-        android:id="@+id/setup_categorie_sang"
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/setup_telephone"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginRight="20dp"
-        android:background="@drawable/bt_uiborderrr"
-        android:drawableLeft="@drawable/country"
-        android:ems="10"
-        android:hint="Categorie sang"
-        android:inputType="textMultiLine"
-        android:padding="14dp" />
-<EditText
-        android:id="@+id/setup_ville"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/setup_categorie_sang"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginRight="20dp"
-        android:background="@drawable/bt_uiborderrr"
-        android:drawableLeft="@drawable/country"
-        android:ems="10"
-        android:hint="Ville"
-        android:inputType="textMultiLine"
-        android:padding="14dp" />
-<EditText
-        android:id="@+id/setup_adresse"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/setup_ville"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginRight="20dp"
-        android:background="@drawable/bt_uiborderrr"
-        android:drawableLeft="@drawable/country"
-        android:ems="10"
-        android:hint="Adresse"
-        android:inputType="textMultiLine"
-        android:padding="14dp" />
-<Button
-    android:id="@+id/setup_information_button"
-    android:layout_width="200dp"
-    android:layout_height="wrap_content"
-    android:layout_below="@+id/setup_adresse"
-    android:layout_centerHorizontal="true"
-    android:layout_marginTop="20dp"
-    android:background="@drawable/bt_uisquare"
-    android:padding="14dp"
-    android:text="Save"
-    android:textColor="@android:color/background_light"
-    android:textSize="20sp"
-    android:textStyle="bold" />
+        android:layout_below="@id/profileLayout">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="8dp"
+            android:layout_margin="16dp">
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/setup_full_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:clickable="false"
+                    android:textColorHint="#696969"
+                    android:backgroundTint="@color/orange"
+                    android:drawableStart="@drawable/ic_person_24dp"
+                    android:drawableLeft="@drawable/ic_person_24dp"
+                    android:drawablePadding="10dp"
+                    android:inputType="text"
+                    android:hint="Nom complet"
+                    android:paddingBottom="16dp" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/setup_cin"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:clickable="false"
+                    android:textColorHint="#696969"
+                    android:backgroundTint="@color/orange"
+                    android:drawableStart="@drawable/ic_profile_24dp"
+                    android:drawableLeft="@drawable/ic_profile_24dp"
+                    android:drawablePadding="10dp"
+                    android:hint="CIN"
+                    android:inputType="text"
+                    android:paddingBottom="16dp" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/setup_email"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:clickable="false"
+                    android:textColorHint="#696969"
+                    android:backgroundTint="@color/orange"
+                    android:drawableStart="@drawable/ic_email_24dp"
+                    android:drawableLeft="@drawable/ic_email_24dp"
+                    android:drawablePadding="10dp"
+                    android:enabled="false"
+                    android:inputType="textEmailAddress"
+                    android:hint="Email"
+                    android:paddingBottom="16dp" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/setup_telephone"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:clickable="false"
+                    android:textColorHint="#696969"
+                    android:backgroundTint="@color/orange"
+                    android:drawableStart="@drawable/ic_local_phone_24dp"
+                    android:drawableLeft="@drawable/ic_local_phone_24dp"
+                    android:drawablePadding="10dp"
+                    android:hint="Téléphone"
+                    android:inputType="phone"
+                    android:paddingBottom="16dp" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp">
+
+
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <Spinner
+                android:background="@drawable/spinnerborder"
+                android:id="@+id/setup_sang"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawablePadding="10dp"
+                android:drawableLeft="@drawable/ic_blood_icon"
+                android:ems="10"
+                android:hint="Categorie sang"
+                android:padding="14dp" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/setup_ville"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:clickable="false"
+                    android:textColorHint="#696969"
+                    android:backgroundTint="@color/orange"
+                    android:drawableStart="@drawable/ic_location_city_24dp"
+                    android:drawableLeft="@drawable/ic_location_city_24dp"
+                    android:drawablePadding="10dp"
+                    android:hint="Ville"
+                    android:inputType="text"
+                    android:paddingBottom="16dp" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/setup_adresse"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:clickable="false"
+                    android:textColorHint="#696969"
+                    android:backgroundTint="@color/orange"
+                    android:drawableStart="@drawable/ic_location_on_24dp"
+                    android:drawableLeft="@drawable/ic_location_on_24dp"
+                    android:drawablePadding="10dp"
+                    android:hint="Adresse"
+                    android:inputType="text"
+                    android:paddingBottom="16dp" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+            <!--<EditText
+                android:id="@+id/setup_password"
+                android:enabled="false"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="20dp"
+                android:background="@drawable/bt_uiborder"
+                android:drawablePadding="10dp"
+                android:drawableLeft="@drawable/ic_lock_outline_24dp"
+                android:ems="10"
+                android:hint="Mot de passe"
+                android:inputType="textPassword"
+                android:padding="14dp" />
+
+            <EditText
+                android:id="@+id/setup_password_confirm"
+                android:enabled="false"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="20dp"
+                android:background="@drawable/bt_uiborder"
+                android:drawablePadding="10dp"
+                android:drawableLeft="@drawable/ic_lock_outline_24dp"
+                android:ems="10"
+                android:hint="Confirmer le mot de passe"
+                android:inputType="textPassword"
+                android:padding="14dp" />-->
+
+            <Button
+                android:id="@+id/setup_information_button"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/setup_adresse"
+                android:layout_gravity="center"
+                android:layout_marginBottom="15dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/bt_uisquare"
+                android:padding="14dp"
+                android:text="Sauvegarder"
+                android:textColor="@android:color/background_light"
+                android:textSize="14sp"/>
+        </LinearLayout>
+    </ScrollView>
 
 </RelativeLayout>
