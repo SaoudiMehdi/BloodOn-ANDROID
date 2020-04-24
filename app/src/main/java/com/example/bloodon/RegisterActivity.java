@@ -1,4 +1,4 @@
-package com.example.bloodon;
+package com.example.mybloodon;
 
 
 
@@ -83,6 +83,7 @@ public class RegisterActivity extends AppCompatActivity {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if(task.isSuccessful()){
+                                sendEmail(email);
                                 SendUserToSetupActivity(email, password);
                                 Toast.makeText(RegisterActivity.this, "you are authenticated succefuly....", Toast.LENGTH_LONG).show();
                             }
@@ -107,5 +108,22 @@ public class RegisterActivity extends AppCompatActivity {
         startActivity(setupIntent);
         finish();
     }
-}
 
+    private void sendEmail(final String email) {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    final String body =  "Hello,\n you have registered with this email : " + email + " to our application Bloodon.\n Thank you.";
+                    MailSender sender = new MailSender("bloodonapp@gmail.com", "bloodon 2020");
+                    sender.sendMail("New user", body, "bloodonapp@gmail.com", email);
+
+                    final String body1 =  "Hello,\n a new user has registered with this email : " + email + " to our application Bloodon.\n Thank you.";
+                    sender.sendMail("New user", body1, "bloodonapp@gmail.com", "bloodonapp@gmail.com");
+                }catch (Exception e) {
+                    Log.e("SendMail", e.getMessage(), e);
+                }
+            }
+        }).start();
+    }
+}
