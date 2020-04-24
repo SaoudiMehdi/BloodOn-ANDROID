@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:id="@+id/nav_post"
+        android:title="Nouvelle Publication"
+        android:icon="@drawable/ic_add_circle_24dp"/>
+    <item android:id="@+id/nav_profile"
+        android:title="Profile"
+        android:icon="@drawable/ic_profile_24dp"/>
+    <item android:id="@+id/nav_home"
+        android:title="Accueil"
+        android:icon="@drawable/ic_home_24dp"/>
+    <item
+        android:id="@+id/nav_friends"
+        android:icon="@drawable/ic_people_24dp"
+        android:title="Amis"
+        android:visible="false" />
+    <item
+        android:id="@+id/nav_find_donnators"
+        android:icon="@drawable/ic_person_add_24dp"
+        android:title="Trouver des donnateurs" />
+    <item
+        android:id="@+id/nav_messages"
+        android:icon="@drawable/ic_messages_24dp"
+        android:title="Messages"
+        android:visible="false" />
+
+    <item android:id="@+id/nav_logout"
+        android:title="Se deconnecter"
+        android:icon="@drawable/ic_cancel_24dp"/>
+
+
+
+
+
+</menu>
