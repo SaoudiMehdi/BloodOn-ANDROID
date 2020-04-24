@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="10dp"
+    android:background="@color/colorProfile">
+
+ <de.hdodenhof.circleimageview.CircleImageView
+     android:id="@+id/all_users_profile_image"
+     android:layout_width="85dp"
+     android:layout_height="85dp"
+     android:layout_marginLeft="10dp"
+     android:src="@drawable/profile" />
+
+ <LinearLayout
+     android:layout_width="match_parent"
+     android:layout_height="wrap_content"
+     android:orientation="vertical"
+     android:layout_margin="5dp">
+     
+   <TextView
+       android:id="@+id/all_users_profile_full_name"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:text="user full name"
+       android:textAlignment="textStart"
+       android:layout_gravity="start"
+       android:textColor="@android:color/background_light"
+       android:textSize="18sp"
+       android:textStyle="bold"/>
+     <TextView
+         android:id="@+id/all_users_status"
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+         android:text="status"
+         android:textAlignment="textStart"
+         android:layout_gravity="start"
+         android:textColor="@android:color/background_light"
+         android:textSize="16sp" />
+     <LinearLayout
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content">
+         <ImageButton
+             android:id="@+id/points_button"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:src="@drawable/ic_deslike_24dp"
+             android:background="#00000000"/>
+         <TextView
+             android:id="@+id/display_no_of_points"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:padding="10dp"
+             android:text="0 points"
+             android:textColor="@android:color/black"
+             android:textSize="14sp"
+             android:textStyle="bold" />
+     </LinearLayout>
+
+ </LinearLayout>
+
+
+</LinearLayout>
