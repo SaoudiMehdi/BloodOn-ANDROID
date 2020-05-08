@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorProfile"
     tools:context=".FindDonnatorsActivity">
 
     <include
@@ -23,17 +22,19 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginLeft="20dp"
+    android:layout_marginBottom="10dp"
     android:text="Search for People and Friends from Schools,Colleges and University"
-    android:textColor="@android:color/background_light"
+    android:textColor="@android:color/black"
     android:textSize="18sp"
+    android:gravity="center"
     android:textStyle="bold" />
 
  <EditText
      android:id="@+id/search_box_input"
-     android:layout_width="280dp"
+     android:layout_width="280sp"
      android:layout_height="50dp"
      android:layout_below="@+id/simpleTextId"
-     android:layout_marginLeft="21dp"
+     android:layout_marginLeft="30dp"
      android:layout_marginTop="10dp"
      android:background="@drawable/inputs"
      android:ems="10"
@@ -49,10 +50,9 @@
       android:layout_height="50dp"
       android:layout_marginTop="10dp"
       android:layout_below="@+id/simpleTextId"
-      android:layout_marginStart="300dp"
-      android:layout_marginLeft="300dp"
-      android:background="@drawable/inputs"
-      android:src="@drawable/search"/>
+      android:layout_toRightOf="@id/search_box_input"
+      android:background="#00ffffff"
+      android:src="@drawable/ic_search_black_24dp"/>
 
 
     </RelativeLayout>
