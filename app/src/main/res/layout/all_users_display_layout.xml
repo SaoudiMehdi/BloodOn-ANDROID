@@ -3,8 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="10dp"
-    android:background="@color/colorProfile">
+    android:layout_margin="10dp">
 
  <de.hdodenhof.circleimageview.CircleImageView
      android:id="@+id/all_users_profile_image"
@@ -17,7 +16,9 @@
      android:layout_width="match_parent"
      android:layout_height="wrap_content"
      android:orientation="vertical"
-     android:layout_margin="5dp">
+     android:layout_margin="5dp"
+     android:layout_gravity="center"
+     android:gravity="">
      
    <TextView
        android:id="@+id/all_users_profile_full_name"
@@ -26,18 +27,10 @@
        android:text="user full name"
        android:textAlignment="textStart"
        android:layout_gravity="start"
-       android:textColor="@android:color/background_light"
+       android:textColor="@color/colorProfile"
        android:textSize="18sp"
        android:textStyle="bold"/>
-     <TextView
-         android:id="@+id/all_users_status"
-         android:layout_width="match_parent"
-         android:layout_height="wrap_content"
-         android:text="status"
-         android:textAlignment="textStart"
-         android:layout_gravity="start"
-         android:textColor="@android:color/background_light"
-         android:textSize="16sp" />
+
      <LinearLayout
          android:layout_width="wrap_content"
          android:layout_height="wrap_content">
@@ -53,7 +46,7 @@
              android:layout_height="wrap_content"
              android:padding="10dp"
              android:text="0 points"
-             android:textColor="@android:color/black"
+             android:textColor="@color/colorProfile"
              android:textSize="14sp"
              android:textStyle="bold" />
      </LinearLayout>

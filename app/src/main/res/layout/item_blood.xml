@@ -2,7 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="horizontal" android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="5dp">
+    android:padding="5dp"
+    android:id="@+id/blood_item_id">
 
     <ImageView
         android:layout_width="56dp"
@@ -14,20 +15,22 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
+        android:layout_gravity="center"
         android:layout_marginLeft="16dp"
         >
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textStyle="bold"
-            android:textColor="@color/colorPrimaryDark"
+            android:textColor="#ff000000"
             android:text="Blood Type"
             android:id="@+id/tv_type"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Quantité"
-            android:textColor="@color/colorPrimaryDark"
+            android:textColor="#ff000000"
+            android:background="#00ffffff"
             android:id="@+id/tv_qte"
             />
     </LinearLayout>
@@ -39,12 +42,9 @@
         <ImageView
             android:layout_gravity="center"
             android:layout_width="wrap_content"
+            android:layout_marginRight="10dp"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_edit"
-            android:outlineAmbientShadowColor="@color/backgroundfragment"
-            android:outlineSpotShadowColor="@color/backgroundfragment"
-            android:background="@color/backgroundfragment"
-            />
+            android:src="@drawable/ic_edit"/>
     </LinearLayout>
 
 </LinearLayout>

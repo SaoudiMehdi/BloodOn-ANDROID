@@ -12,14 +12,15 @@
         android:layout_width="match_parent"
         android:layout_height="250dp"
         android:layout_weight="0.75"
-        android:background="@drawable/header4_2"
+        android:background="@drawable/header1_2"
         android:gravity="center"
         android:orientation="vertical">
 
         <ImageView
-            android:layout_width="110dp"
-            android:layout_height="110dp"
-            android:layout_marginTop="100dp"
+            android:layout_width="130dp"
+            android:layout_height="130dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/bt_uiborder"
             android:src="@drawable/ic_bloodonlogo"
             android:visibility="visible" />
     </LinearLayout>
@@ -36,7 +37,6 @@
             android:gravity="center"
             android:orientation="vertical"
             android:padding="8dp">
-
             <com.google.android.material.textfield.TextInputLayout
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
@@ -94,6 +94,11 @@
 
             </com.google.android.material.textfield.TextInputLayout>
 
+            <CheckBox
+                android:id="@+id/hospital_account"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:text="compte pour un hopital"/>
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
