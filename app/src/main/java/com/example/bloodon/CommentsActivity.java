@@ -1,4 +1,4 @@
-package com.example.bloodon;
+package com.example.mybloodon;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -53,10 +53,6 @@ public class CommentsActivity extends AppCompatActivity {
 
         Post_key = getIntent().getExtras().get("PostKey").toString();
 
-
-
-
-
         mAuth= FirebaseAuth.getInstance();
         current_user_id =mAuth.getCurrentUser().getUid();
         UsersRef=FirebaseDatabase.getInstance().getReference().child("Users");
@@ -83,7 +79,7 @@ public class CommentsActivity extends AppCompatActivity {
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot)
                     { if(dataSnapshot.exists())
                     {
-                        String userName =dataSnapshot.child("username").getValue().toString();
+                        String userName = dataSnapshot.child("fullname").getValue().toString();
 
                         validateComment(userName);
 
@@ -119,7 +115,7 @@ public class CommentsActivity extends AppCompatActivity {
             @Override
             protected void populateViewHolder(CommentsViewHolder viewHolder, Comments model, int position)
             {
-                 viewHolder.setUsername(model.getUsername());
+                viewHolder.setUsername(model.getUsername());
                 viewHolder.setComment(model.getComment());
                 viewHolder.setDate(model.getDate());
                 viewHolder.setTime(model.getTime());
@@ -180,7 +176,7 @@ public class CommentsActivity extends AppCompatActivity {
 
 
                 Calendar calForTime = Calendar.getInstance();
-                SimpleDateFormat currenTime = new SimpleDateFormat("HH:mm");
+                SimpleDateFormat currenTime = new SimpleDateFormat("HH:mm:ss");
                 final String saveCurrentTime = currenTime.format(calFordate.getTime());
 
                 final  String RandomKey = current_user_id + saveCurrentDate + saveCurrentTime;
