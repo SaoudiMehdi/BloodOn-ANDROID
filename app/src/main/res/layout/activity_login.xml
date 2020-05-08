@@ -10,13 +10,14 @@
         android:layout_width="match_parent"
         android:layout_height="250dp"
         android:layout_weight="0.75"
-        android:background="@drawable/header4_2"
+        android:background="@drawable/header1_2"
         android:gravity="center"
         android:orientation="vertical">
         <ImageView
-            android:layout_width="110dp"
-            android:layout_height="110dp"
+            android:layout_width="130dp"
+            android:layout_height="130dp"
             android:layout_marginTop="100dp"
+            android:background="@drawable/bt_uiborder"
             android:src="@drawable/ic_bloodonlogo"
             android:visibility="visible" />
     </LinearLayout>
