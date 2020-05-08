@@ -28,7 +28,7 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/all_users_post_list"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+                android:layout_height="match_parent"/>
         </FrameLayout>
 
         <ImageButton
@@ -43,6 +43,66 @@
             android:focusableInTouchMode="false"
             android:scaleType="centerCrop"
             android:src="@drawable/add_post_high" />
+
+        <ImageButton
+            android:id="@+id/all_posts"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_above="@+id/main_container"
+            android:layout_toRightOf="@id/add_new_post_button"
+            android:layout_marginBottom="5dp"
+            android:backgroundTint="@color/orange"
+            android:baselineAlignBottom="false"
+            android:focusableInTouchMode="false"
+            android:scaleType="centerCrop"
+            android:layout_centerVertical="true"
+            android:src="@drawable/ic_worldwide" />
+
+        <TextView
+            android:id="@+id/post_location"
+            android:layout_width="48dp"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/main_container"
+            android:layout_toRightOf="@id/add_new_post_button"
+            android:text="global"
+            android:textSize="12dp"
+            android:textColor="@color/colorWhite"
+            android:gravity="center"/>
+        <Spinner
+            android:id="@+id/blood_spinner"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+
+            android:layout_above="@+id/main_container"
+            android:layout_toRightOf="@id/all_posts"
+            android:layout_centerVertical="true"
+            android:layout_centerInParent="true"
+            android:layout_marginBottom="4dp"
+            android:baselineAlignBottom="false"
+            android:focusableInTouchMode="false"
+            android:scaleType="centerCrop"
+            android:drawablePadding="10dp"
+            android:drawableLeft="@drawable/ic_blood_icon"
+            android:ems="10"
+            android:outlineAmbientShadowColor="@color/colorWhite"
+            android:outlineSpotShadowColor="@color/colorWhite"
+            android:hint="sang"
+            android:padding="14dp"/>
+
+        <ImageButton
+            android:id="@+id/stock_button"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_above="@+id/main_container"
+            android:layout_toRightOf="@id/blood_spinner"
+            android:layout_marginBottom="4dp"
+            android:backgroundTint="@color/orange"
+            android:baselineAlignBottom="false"
+            android:focusableInTouchMode="false"
+            android:scaleType="centerCrop"
+            android:src="@drawable/ic_warehouse"
+            android:visibility="invisible"/>
+
     </RelativeLayout>
 
     <com.google.android.material.navigation.NavigationView
