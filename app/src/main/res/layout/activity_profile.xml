@@ -16,7 +16,7 @@
             android:layout_width="match_parent"
             android:layout_height="245sp"
             android:layout_weight="0.75"
-            android:background="@drawable/header4_2"
+            android:background="@drawable/header1_2"
             android:gravity="center"
             android:orientation="vertical">
 
@@ -30,7 +30,7 @@
                     android:layout_height="wrap_content"
                     android:layout_centerHorizontal="true"
                     android:layout_centerVertical="true"
-                    android:layout_marginTop="20dp"
+                    android:layout_marginTop="10dp"
                     android:layout_marginBottom="5dp"
                     android:text="YOUNESS Mouad"
                     android:textColor="#fff"
@@ -142,6 +142,7 @@
 
             <com.google.android.material.textfield.TextInputLayout
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:id="@+id/blood_container"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp">
