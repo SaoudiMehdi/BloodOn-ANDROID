@@ -1,12 +1,11 @@
 apply plugin: 'com.android.application'
-apply plugin: 'com.google.gms.google-services'
 
 android {
     compileSdkVersion 29
     buildToolsVersion "29.0.2"
     defaultConfig {
-        applicationId "com.example.bloodon"
-        minSdkVersion 24
+        applicationId "com.example.mybloodon"
+        minSdkVersion 15
         targetSdkVersion 29
         versionCode 1
         versionName "1.0"
@@ -21,19 +20,31 @@ android {
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation 'androidx.appcompat:appcompat:1.0.2'
-    implementation 'com.google.firebase:firebase-database:19.2.1'
+    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
+    implementation 'com.google.android.gms:play-services-maps:17.0.0'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'
-    implementation 'com.google.firebase:firebase-analytics:17.2.2'
-    implementation 'com.google.firebase:firebase-auth:19.2.0'
-	
-	implementation 'com.google.android.gms:play-services-auth:16.0.1'
-
-
+    implementation 'com.google.android.gms:play-services-auth:16.0.1'
     implementation 'com.google.android.material:material:1.0.0-alpha1'
     implementation 'com.google.android.material:material:1.0.0'
-
+    implementation 'de.hdodenhof:circleimageview:2.2.0'
+    //firebase
+    implementation 'com.google.firebase:firebase-auth:16.0.5'
+    implementation 'com.google.firebase:firebase-storage:16.0.5'
+    implementation 'com.google.firebase:firebase-database:16.0.5'
+    implementation 'com.firebaseui:firebase-ui-database:0.6.0'
+    implementation 'com.google.firebase:firebase-core:16.0.0'
+    //Picasso
+    implementation 'com.squareup.picasso:picasso:2.71828'
+    // dev art
+    implementation 'com.theartofdev.edmodo:android-image-cropper:2.6.+'
+    implementation files('libs/mail.jar')
+    implementation files('libs/additionnal.jar')
+    implementation files('libs/activation.jar')
 }
+
+apply plugin: 'com.google.gms.google-services'
+com.google.gms.googleservices.GoogleServicesPlugin.config.disableVersionCheck = true
