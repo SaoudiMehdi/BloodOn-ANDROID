@@ -1,4 +1,4 @@
-package com.example.mybloodon;
+package com.example.bloodon;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
